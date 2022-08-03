@@ -102,20 +102,6 @@ int controller_filtrar(LinkedList* this)
 	}
 	return returnAux;
 }
-/*
-int controller_map(LinkedList* this)
-{
-	int returnAux;
-	returnAux = -1;
-
-	if(this != NULL)
-	{
-		ll_map(this, Pokemon_map);
-		ll_map(this, Pokemon_mapDos);
-		returnAux = 1;
-	}
-	return returnAux;
-}*/
 
 int controller_map(LinkedList* this, int opcion)
 {

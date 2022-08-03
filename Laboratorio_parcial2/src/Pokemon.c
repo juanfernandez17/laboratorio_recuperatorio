@@ -443,6 +443,7 @@ int Pokemon_count(void* this)
 			if(((strcmp(tipo, "Fire") == 0) && (strcmp(tamaño, "XL") == 0) && (strcmp(ataqueCargado, "LanzaLlamas") == 0) && valorAtaque > 80) ||
 				((strcmp(tipo, "Water") == 0) && (strcmp(tamaño, "L") == 0) && (strcmp(ataqueCargado, "Hidrobomba") == 0) && valorAtaque > 80))
 				{
+					// En el archivo no hay pokemones que cumplan todas las caracteristicas por eso siempre que se use esta opcion da 0.
 					returnAux = 1;
 				}
 		}

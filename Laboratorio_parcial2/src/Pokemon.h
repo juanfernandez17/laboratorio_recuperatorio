@@ -43,9 +43,9 @@ int Pokemon_setGeneral(Pokemon* this, int id, char* nombre, char* tipo, char* ta
 int Pokemon_getGeneral(Pokemon* this, int* id, char* nombre, char* tipo, char* tamaño, char* ataqueCargado, int* valorAtaque, int* esVarioColor);
 int Pokemon_printOne(Pokemon* this);
 int Pokemon_indiceById(LinkedList* listaPokemon, int sizeList,int id);
-
 int Pokemon_filtrarTipo(void* this);
 int Pokemon_map(void* this);
 int Pokemon_mapDos(void* this);
 int Pokemon_count(void* this);
+
 #endif /* POKEMON_H_ */
