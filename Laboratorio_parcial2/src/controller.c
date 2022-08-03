@@ -71,15 +71,18 @@ int controller_deletePokemon(LinkedList* listaPokemon)
 	if(listaPokemon != NULL)
 	{
 		sizeList = ll_len(listaPokemon);
-		utn_getNumero(&idPokemon, "\n\nIngresar ID del pokemon a eliminar: ", "Error, intentelo de nuevo: ", 1, sizeList);
+		utn_getNumero(&idPokemon, "\n\nIngresar ID del pokemon a eliminar: ", "Error, intentelo de nuevo: ", 1, 999);
 		indice = Pokemon_indiceById(listaPokemon, sizeList, idPokemon);
 
-		eliminarPokemon = (Pokemon*) ll_pop(listaPokemon, indice);
-
-		if(eliminarPokemon != NULL)
+		if(indice != -1)
 		{
-			Pokemon_printOne(eliminarPokemon);
-			returnAux = 1;
+			eliminarPokemon = (Pokemon*) ll_pop(listaPokemon, indice);
+
+			if(eliminarPokemon != NULL)
+			{
+				Pokemon_printOne(eliminarPokemon);
+				returnAux = 1;
+			}
 		}
 	}
 	return returnAux;
@@ -99,7 +102,7 @@ int controller_filtrar(LinkedList* this)
 	}
 	return returnAux;
 }
-
+/*
 int controller_map(LinkedList* this)
 {
 	int returnAux;
@@ -107,7 +110,40 @@ int controller_map(LinkedList* this)
 
 	if(this != NULL)
 	{
-		returnAux = ll_map(this, Pokemon_map);
+		ll_map(this, Pokemon_map);
+		ll_map(this, Pokemon_mapDos);
+		returnAux = 1;
+	}
+	return returnAux;
+}*/
+
+int controller_map(LinkedList* this, int opcion)
+{
+	int returnAux;
+	returnAux = -1;
+
+	if(this != NULL)
+	{
+		if(opcion == 5)
+		{
+			returnAux = ll_map(this, Pokemon_map);
+		}
+		else
+		{
+			returnAux = ll_map(this, Pokemon_mapDos);
+		}
+	}
+	return returnAux;
+}
+
+int controller_count(LinkedList* this)
+{
+	int returnAux;
+	returnAux = -1;
+
+	if(this != NULL)
+	{
+		returnAux = ll_count(this, Pokemon_count);
 	}
 	return returnAux;
 }

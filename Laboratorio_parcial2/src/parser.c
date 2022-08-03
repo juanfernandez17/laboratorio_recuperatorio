@@ -34,6 +34,7 @@ int parser_pokemonTxt(FILE* pFile, LinkedList* listaPokemon)
 				ll_add(listaPokemon, nuevoPokemon);
 			}
 		} while(!feof(pFile) && datosLeidos == 7);
+		returnAux = 1;
 	}
 	return returnAux;
 }

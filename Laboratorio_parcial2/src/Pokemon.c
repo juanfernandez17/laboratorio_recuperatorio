@@ -312,6 +312,8 @@ int Pokemon_indiceById(LinkedList* listaPokemon, int sizeList,int id)
 	Pokemon* unPokemon;
 	int idPokemon;
 
+	indice = -1;
+
 	if(listaPokemon != NULL && sizeList > 0&& id > 0)
 	{
 		for(int i = 0; i < sizeList; i++)
@@ -370,6 +372,79 @@ int Pokemon_map(void* this)
 			valorAtaque = valorAtaque * 1.1;
 			Pokemon_setValorAtaque(unPokemon, valorAtaque);
 			returnAux = 1;
+		}
+	}
+	return returnAux;
+}
+
+int Pokemon_mapDos(void* this)
+{
+	int returnAux;
+	char tipo[20];
+	char tamaño[20];
+	int valorAtaque;
+	Pokemon* unPokemon;
+
+	returnAux = -1;
+
+	if(this != NULL)
+	{
+		unPokemon = (Pokemon*) this;
+		Pokemon_getTipo(unPokemon, tipo);
+		Pokemon_getTamaño(unPokemon, tamaño);
+		Pokemon_getValorAtaque(unPokemon, &valorAtaque);
+
+		if(strcmp(tipo, "Bug") == 0 || strcmp(tipo, "Fire") == 0 || strcmp(tipo, "Grass") == 0)
+		{
+			if(strcmp(tamaño, "XL") == 0)
+			{
+				valorAtaque = valorAtaque * 1.2;
+			}
+			else
+			{
+				if(strcmp(tamaño, "L") == 0)
+				{
+					valorAtaque = valorAtaque * 1.1;
+				}
+				else
+				{
+					valorAtaque = valorAtaque * 1.05;
+				}
+			}
+		}
+		Pokemon_setValorAtaque(unPokemon, valorAtaque);
+		returnAux = 1;
+	}
+	return returnAux;
+}
+
+int Pokemon_count(void* this)
+{
+	int returnAux;
+	char tipo[20];
+	char tamaño[20];
+	char ataqueCargado[20];
+	int valorAtaque;
+	Pokemon* unPokemon;
+
+	returnAux = -1;
+
+	if(this != NULL)
+	{
+		unPokemon = (Pokemon*) this;
+
+		if(unPokemon != NULL)
+		{
+			Pokemon_getTipo(unPokemon, tipo);
+			Pokemon_getTamaño(unPokemon, tamaño);
+			Pokemon_getAtaqueCargado(unPokemon, ataqueCargado);
+			Pokemon_getValorAtaque(unPokemon, &valorAtaque);
+
+			if(((strcmp(tipo, "Fire") == 0) && (strcmp(tamaño, "XL") == 0) && (strcmp(ataqueCargado, "LanzaLlamas") == 0) && valorAtaque > 80) ||
+				((strcmp(tipo, "Water") == 0) && (strcmp(tamaño, "L") == 0) && (strcmp(ataqueCargado, "Hidrobomba") == 0) && valorAtaque > 80))
+				{
+					returnAux = 1;
+				}
 		}
 	}
 	return returnAux;

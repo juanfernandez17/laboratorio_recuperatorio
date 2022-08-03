@@ -627,3 +627,28 @@ int ll_map(LinkedList* this, int(*fn)(void* el))
 	return returnAux;
 }
 
+int ll_count(LinkedList* this, int (*fn)(void* el))
+{
+	int contador;
+	int returnFunc;
+	int sizeList;
+	void* element;
+
+	if(this != NULL && fn != NULL)
+	{
+		sizeList = ll_len(this);
+		contador = 0;
+
+		for(int i = 0; i < sizeList; i++)
+		{
+			element = (void*) ll_get(this, i);
+			returnFunc = fn(element);
+
+			if(returnFunc == 1)
+			{
+				contador++;
+			}
+		}
+	}
+	return contador;
+}

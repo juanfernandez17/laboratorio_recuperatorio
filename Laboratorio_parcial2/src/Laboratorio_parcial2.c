@@ -20,6 +20,7 @@ int main(void) {
 	char nombreArchivo[50];
 	int returnAux;
 	int flagLoadCsv;
+	int contadorPokemon;
 	flagLoadCsv = 0;
 
 	do
@@ -29,9 +30,11 @@ int main(void) {
 				"2. Eliminar pokemon\n"
 				"3. Imprimir pokemones\n"
 				"4. Filtrar de tipo agua variocolor\n"
-				"5. Mapear ataque cargado\n"
-				"6. Salir\n\n"
-				"Seleccione una opcion: ", "Error, opcion no valida. Intentelo de nuevo: ", 1, 6);
+				"5. Mapear ataque cargado por tiempo atmosferico\n"
+				"6. Mapear ataque cargado por Evento Kanto\n"
+				"7. Contador de pokemones para batalla\n"
+				"8. Salir\n\n"
+				"Seleccione una opcion: ", "Error, opcion no valida. Intentelo de nuevo: ", 1, 8);
 
 		switch(opcion)
 		{
@@ -115,7 +118,7 @@ int main(void) {
 			case 5:
 				if(flagLoadCsv == 1)
 				{
-					returnAux = controller_map(listaPokemons);
+					returnAux = controller_map(listaPokemons, opcion);
 
 					if(returnAux == 1)
 					{
@@ -131,10 +134,48 @@ int main(void) {
 					printf("\nNo se ha cargado ningun archivo! Seleccione la opcion uno para hacerlo.");
 				}
 				break;
+			case 6:
+				if(flagLoadCsv == 1)
+				{
+					returnAux = controller_map(listaPokemons, opcion);
+
+					if(returnAux == 1)
+					{
+						printf("\nValores de ataque mapeados correctamente!");
+					}
+					else
+					{
+						printf("\nError al mapear los valores de ataque!");
+					}
+				}
+				else
+				{
+					printf("\nNo se ha cargado ningun archivo! Seleccione la opcion uno para hacerlo.");
+				}
+				break;
+			case 7:
+				if(flagLoadCsv == 1)
+				{
+					contadorPokemon = controller_count(listaPokemons);
+
+					if(contadorPokemon > 2)
+					{
+						printf("\nLogramos vencer al pokemon legendario al juntar: %d pokemones!", contadorPokemon);
+					}
+					else
+					{
+						printf("\nNo logramos vencer al pokemon legendario, solamente juntamos: %d pokemones!", contadorPokemon);
+					}
+				}
+				else
+				{
+					printf("\nNo se ha cargado ningun archivo! Seleccione la opcion uno para hacerlo.");
+				}
+				break;
 			default:
 				printf("\nPrograma cerrado. Saludos!");
 				break;
 		}
-	}while(opcion != 6);
+	}while(opcion != 8);
 	return 0;
 }
